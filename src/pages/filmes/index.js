@@ -100,7 +100,7 @@ export default function Filme(){
                             </tbody>
                         </table>
 
-                        <button onClick={() => {mudarPagina(); search()}}>Próximo</button>
+                        <button onClick={mudarPagina} onClickCapture={search}>Próximo</button>
                         
                     </div>
                 </div>
