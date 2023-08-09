@@ -1,0 +1,193 @@
+.page-sorvete{
+
+    width:100vw;
+    height:100vh;
+
+    overflow-x:hidden;
+
+    background-color:#F5F6FA;
+
+    label,h3{
+
+        font-size:18px;
+        color:#646464;
+        font-weight: 600;
+        line-height:25px;
+    }
+
+    .container-sorvete{
+
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+
+        width:100vw;
+        height:90vh;
+
+        .conteudo{
+
+            background-color:#fff;
+
+            .imagem-sorveteria{
+
+                position:relative;
+
+                width:100%;
+                height:128px;
+
+                margin-bottom:30px;
+
+                background-image: url('../../assets/images/background-sorvete.png');
+                background-size:100%;
+
+                >img{
+
+                    top:0;
+                    left:0;
+                    right:0;
+                    bottom:0;
+                    position:absolute;
+                }
+
+                >div{
+
+                    display:flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+
+                    position:absolute;
+
+                    width: 133px;
+                    height: 36px;
+                    border-radius: 3px;
+
+                    left:5px;
+                    top:65%;
+
+                    background-color: #66344A;
+                    color:#fff;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+            }
+
+            .adicionar{
+
+                display:flex;
+                flex-direction: row;
+                align-items: flex-start;
+
+                padding:10px 40px;
+                gap:10px;
+
+                color:#888888;
+
+                .novo-item{
+
+                    display:flex;
+                    flex-direction: column;
+
+                    margin-top:-24px;
+
+                    input{
+
+                        padding:10px 20px;
+
+                        color:#888888;
+                    }
+                }
+
+                button{
+
+                    padding: 10px 20px;
+
+                    background-color: #8A4A66;
+                    color:#fff;
+                    font-size:14px;
+
+                    border-radius:3px;
+                }
+
+                input{
+
+                    border:1px solid #DFDFDF;
+                    padding:5px 20px;
+                }
+
+                .preco{
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    height:40px;
+                    width:150px;
+
+                    border:1px solid #DFDFDF;
+
+                    >div{
+
+                        padding:10px;
+                    }
+
+                    #cifrao{
+                        
+                        border-right:1px solid #DFDFDF;
+                    }
+                }
+            }
+
+            .lista{
+
+                padding:20px 40px;
+
+                ul{
+
+                    height:210px;
+                    overflow:auto;
+
+                    padding-inline-start:0px;
+                    list-style: none;
+                }
+
+                ul::-webkit-scrollbar{
+
+                    width:10px;
+                }
+
+                ul::-webkit-scrollbar-track{
+
+                    background-color: transparent;
+                }
+
+                ul::-webkit-scrollbar-thumb{
+
+                    background-color:#646464;
+                    border-radius:20px;
+                }
+
+                .header-lista{
+
+                    display:flex;
+                    flex-direction:row;
+                    justify-content:space-between;
+                    align-items: flex-start;
+                    
+
+                    width:100%;
+                    height:30px;
+
+                    >div{
+
+                        font-size:15px;
+                        line-height:25px;
+                        color:#474747;
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+.carro-page{
+
+  width:100vw;
+  height:100vh;
+
+  background-color: #F5F6FA;
+
+  overflow-x:hidden;
+
+  label{
+
+    color:#646464;
+    font-size:18px;
+  }
+
+  input{
+
+    color:#888888;
+    border:1px solid #DFDFDF;
+    border-radius:3px;
+  }
+
+  .container-page{
+
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      width:100vw;
+      height:100%;
+
+      .container-carro{
+
+          display:flex;
+          flex-direction: row;
+
+          height:400px;
+
+          .image-carro{
+
+              display:flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+
+              padding:50px;
+              width:250px;
+
+              background-color: #CACACA;
+
+              .img{
+
+                  width:250px;
+                  height:auto;
+              }
+          }
+
+          .calc{
+
+              display: flex;
+              flex-direction: column;
+
+              padding:60px 20px;
+              width:60%;
+
+              background-color: #fff;
+
+              >input{
+
+                padding:10px;
+                width:350px;
+
+                  margin-bottom:20px;
+              }
+
+              .subc-carro{
+
+                  display:flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+
+                  margin-bottom:30px;
+                  gap:20px;
+
+                  div{
+
+                      display:flex;
+                      flex-direction: column;
+
+                      input{
+                          width:130px;
+                          height:30px;
+                      }
+                  }
+              }
+
+                .calcular{
+
+                    background-color:#0084FF;
+                    color:#fff;
+                    font-weight: 700;
+
+                    border:none;
+                    border-radius:3px;
+
+                    padding:10px 40px;
+                    margin-bottom:40px;
+                }  
+
+                .resultados{
+
+                    display: flex;
+                    flex-direction: column;
+
+                    gap:20px;
+
+                    font-size:18px;
+                    color:#646464;
+
+                    b{
+
+                        margin-left:20px;
+                    }
+              }
+          }
+      }
+  }
+}

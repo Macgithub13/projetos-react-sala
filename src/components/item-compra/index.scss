@@ -1,0 +1,25 @@
+.true{
+
+    
+    .produto{
+
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        padding:10px 20px;
+        color:#888888;
+
+        border:1px solid #DFDFDF;
+
+        b{
+
+            margin-right:5px;
+        }
+    }
+}
+
+.false{
+
+    display:none;
+}

@@ -1,0 +1,47 @@
+.cabecalho-dark{
+
+    width:250px;
+
+    .logo{
+
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+
+        margin-bottom:40px;
+
+        img{
+
+            width:40px;
+            height:auto;
+        }
+    }
+
+    .menu{
+
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        height:200px;
+        width:180px;
+
+        button{
+            
+            background-color:#252525;
+            color:#fff;
+            font-size: 14px;
+
+            width:100%;
+
+            div{
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                gap:10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+.post{
+
+    width:500px;
+
+    .user{
+
+        display:flex;
+        flex-direction:row;
+
+        margin-bottom:20px;
+
+        >img{
+
+            width:60px;
+            height:60px;
+
+            border-radius:50%;
+
+            margin-right:20px;
+        }
+
+        #nick{
+
+            color:#fff;
+        }
+
+        #tempo{
+
+            color:#AAAAAA;
+
+        }
+    }
+
+    .post{
+
+        width:500px;
+        margin-bottom:30px;
+
+        img{
+
+            width:100%;
+            height:auto;
+        }
+    }
+    .desc-post{
+
+        margin-bottom:40px;
+
+        font-size:16px;
+
+        .curtidas{
+
+            margin-bottom:10px;
+
+            .buttons{
+
+                display:flex;
+                flex-direction:row;
+
+                gap:10px;
+                margin-bottom:10px;
+                button{
+
+                    width:25px;
+
+                    background:none;
+                }
+                img{
+
+                    width:100%;
+                    height:auto;
+                }
+            }
+        }
+
+        .desc{
+
+            display:flex;
+            flex-direction:row;
+
+            gap:10px;
+
+            #cor{
+
+                color:#AAAAAA;
+            }
+        }
+    }
+
+    .line{
+
+        width:500px;
+        
+        margin-bottom:50px;
+
+        background-color: #565656;
+    }
+}
