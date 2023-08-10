@@ -9,17 +9,26 @@ export default function Filme(){
     const[filme,setFilme]=useState('');
     const[filmes,setFilmes]=useState([]);
     const[page,setPage]=useState(Number(1));
-    const[filtro,setFiltro]=useState(null);
-    const[display,setDisplay]=useState('none');
+    const[filtro,setFiltro]=useState('no-load');
 
     async function search(){
 
-        let url='http://www.omdbapi.com/?apikey=85a936bc&s='+filme+'&page='+page+'&type='+filtro;
+        let filtroInicial='';
+        let url='';
+        if(filtro==='no-load'){
+
+            url='http://www.omdbapi.com/?apikey=85a936bc&s='+filme+'&page='+page+'&type='+filtroInicial;
+        }
+
+        else{
+
+            url='http://www.omdbapi.com/?apikey=85a936bc&s='+filme+'&page='+page+'&type='+filtro;
+        }
+        
         // http://www.omdbapi.com/?apikey=85a936bc&s=Spider Man&page=2&type=null
         let resultados= await axios.get(url);
 
         setFilmes(resultados.data.Search);
-        console.log(filtro);
     }
 
     useEffect(() => {
@@ -32,7 +41,7 @@ export default function Filme(){
 
     useEffect(() => {
 
-        if(filtro!==null){
+        if(filtro!=='no-load'){
 
             search();
         }
@@ -60,7 +69,7 @@ export default function Filme(){
                             <h3>Consulta de Filmes</h3>
                             <select name='Filtrar' onChange={(e) => {setFiltro(e.target.value)}}>
 
-                                <option value=''>Filtrar</option>
+                                <option value=''>Todos</option>
                                 <option value='movie'>Filme</option>
                                 <option value='game'>Jogos</option>
                                 <option value='series'>Séries</option>
