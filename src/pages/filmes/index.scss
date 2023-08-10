@@ -139,9 +139,13 @@
                 table{
                     
                     width:550px;
+                    margin-bottom:30px;
+
                     box-shadow: 0px 1px 2px 0px #CACACA80;
                     color:#606060;
                     font-size:12px;
+
+                    border-collapse: collapse;
 
                     th{
 
@@ -161,12 +165,11 @@
 
                         img{
                             
-                            display:none;
                             transition: 0.5s;
-                            width:55px;
-                            height:55px;
+                            width:0px;
+                            height:0px;
                             border-radius:50%;
-                            border: 2px solid #C5BC4D;
+                            
                         }
                     }
 
@@ -174,11 +177,45 @@
 
                         background-color: #C5BC4D;
                         box-shadow: 0px 4px 11px 0px #BCBCBC;
-                        transition:1s;
+                        transition:0.5s;
                         img{
 
-                            display:block;
+                            width:55px;
+                            height:55px;
+                            border: 2px solid #C5BC4D;
                         }
+                    }
+                }
+
+                .paginas{
+
+                    display:flex;
+                    flex-direction: column;
+
+                    .avancar-voltar-pages{
+
+                        display:flex;
+                        flex-direction:row;
+                        justify-content: space-between;
+
+                        margin-bottom:10px;
+
+                        button{
+
+                            padding:10px 15px;
+
+                            background-color: #ADA646;
+                            color:#fff;
+                            font-size:16px;
+
+                            border-radius:10px;
+                        }
+                    }
+
+                    #enumerar{
+
+                        font-weight:700px;
+                        color:#606060;
                     }
                 }
             }

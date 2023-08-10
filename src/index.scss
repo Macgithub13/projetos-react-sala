@@ -14,3 +14,9 @@ button,a{
   border:none;
   background:none;
 }
+
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+} 

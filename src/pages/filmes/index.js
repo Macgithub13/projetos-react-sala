@@ -1,8 +1,7 @@
 import './index.scss';
 import axios from 'axios';
 import Cabecalho from '../../components/header';
-import { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { useEffect, useState } from 'react';
 import ReactImageZoom from 'react-image-zoom';
 
 export default function Filme(){
@@ -10,31 +9,36 @@ export default function Filme(){
     const[filme,setFilme]=useState('');
     const[filmes,setFilmes]=useState([]);
     const[page,setPage]=useState(Number(1));
-    const[filtro,setFiltro]=useState('');
-
-    let click='false';
-
-    function mudarPagina(){
-
-        click='true';
-     }
+    const[filtro,setFiltro]=useState(null);
+    const[display,setDisplay]=useState('none');
 
     async function search(){
 
-        if(click==='true'){
-
-            setPage(page+1);
-        }
-
         let url='http://www.omdbapi.com/?apikey=85a936bc&s='+filme+'&page='+page+'&type='+filtro;
-
+        // http://www.omdbapi.com/?apikey=85a936bc&s=Spider Man&page=2&type=null
         let resultados= await axios.get(url);
 
         setFilmes(resultados.data.Search);
-
-        click='false';
+        console.log(filtro);
     }
 
+    useEffect(() => {
+
+        if(page!==1){
+
+            search();
+        }
+    },[page]);
+
+    useEffect(() => {
+
+        if(filtro!==null){
+
+            search();
+        }
+
+    },[filtro])
+    
     return(
 
         <div className='page-filme'>
@@ -54,13 +58,14 @@ export default function Filme(){
                         <div className='header-consulta'>
 
                             <h3>Consulta de Filmes</h3>
-                            <select>
+                            <select name='Filtrar' onChange={(e) => {setFiltro(e.target.value)}}>
 
-                                <option onClick={() => {setFiltro('')}}>Todos</option>
-                                <option onClick={() => {setFiltro('movie')}}>Filme</option>
-                                <option onClick={() => {setFiltro('series')}}>Série</option>
-                                <option onClick={() => {setFiltro('games')}}>Jogo</option>
+                                <option value=''>Filtrar</option>
+                                <option value='movie'>Filme</option>
+                                <option value='game'>Jogos</option>
+                                <option value='series'>Séries</option>
                             </select>
+                            
                         </div>
                         <div className='button-pesquisar'>
 
@@ -87,21 +92,32 @@ export default function Filme(){
                             </thead>
 
                             <tbody>
-                                {filmes.map(item=> 
+                                
+                            {filmes.map(item=> 
                                 <tr>
                                     <td style={{fontWeight:"700"}}>{item.imdbID.substr(2,9)}</td>
                                     <td>{item.Title}</td>
                                     <td>{item.Year}</td>
-                                    <td> <img src={item.Poster} alt=''/></td>
-                                    
-    
+                                    <td> <img src={item.Poster} alt=''/></td>           
+
                                 </tr>
                                 )}
                             </tbody>
                         </table>
 
-                        <button onClick={mudarPagina} onClickCapture={search}>Próximo</button>
-                        
+                        <div className='paginas'>
+
+                            <div className='avancar-voltar-pages'>
+
+                                <button onClick={() => {
+
+                                    if(page!==1){setPage(page-1)}
+                                }}>Voltar</button>
+                                <button onClick={() =>{setPage(page+1)}}>Próximo</button>
+                            </div>
+
+                            <div id='enumerar'>Página: {page}</div>
+                        </div>                      
                     </div>
                 </div>
             </div>
