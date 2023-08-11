@@ -33,6 +33,7 @@ export default function Filme(){
         let resultados= await axios.get(url);
 
         setFilmes(resultados.data.Search);
+        console.log(filmes);   
     }
 
     useEffect(() => {
@@ -107,12 +108,12 @@ export default function Filme(){
                             <tbody>
                                 
                             {filmes.map(item=> 
-                                <tr onMouseOver={() => {setImage(item.Poster)}}>
+                                <tr>
                                     <td style={{fontWeight:"700"}}>{item.imdbID.substr(2,9)}</td>
                                     <td>{item.Title}</td>
                                     <td>{item.Year}</td>
                                     <td className='images'> <img src={item.Poster} alt='' draggable={false}/> </td>
-                                    <td><ReactImageZoom {...props} /></td>           
+                                           
                                 </tr>
                                 )}
                             </tbody>

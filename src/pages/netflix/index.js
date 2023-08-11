@@ -100,7 +100,6 @@ export default function Netflix(){
 
                 <h4>Resultados da busca</h4>
                 
-                
                 <h5>Filmes</h5>
                 <div>
                     {resultadosF.map(item => 
