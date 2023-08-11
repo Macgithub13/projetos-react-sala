@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cabecalho from '../../components/header';
 import { useEffect, useState } from 'react';
 import ReactImageZoom from 'react-image-zoom';
+import ReactImageMagnify from 'react-image-magnify';
 
 export default function Filme(){
 
@@ -10,7 +11,10 @@ export default function Filme(){
     const[filmes,setFilmes]=useState([]);
     const[page,setPage]=useState(Number(1));
     const[filtro,setFiltro]=useState('no-load');
+    const[image,setImage]=useState('');
 
+    const props = {width: 400, height: 250, zoomWidth: 500, img: image}; 
+                                        
     async function search(){
 
         let filtroInicial='';
@@ -103,15 +107,16 @@ export default function Filme(){
                             <tbody>
                                 
                             {filmes.map(item=> 
-                                <tr>
+                                <tr onMouseOver={() => {setImage(item.Poster)}}>
                                     <td style={{fontWeight:"700"}}>{item.imdbID.substr(2,9)}</td>
                                     <td>{item.Title}</td>
                                     <td>{item.Year}</td>
-                                    <td> <img src={item.Poster} alt=''/></td>           
-
+                                    <td className='images'> <img src={item.Poster} alt='' draggable={false}/> </td>
+                                    <td><ReactImageZoom {...props} /></td>           
                                 </tr>
                                 )}
                             </tbody>
+                            
                         </table>
 
                         <div className='paginas'>
