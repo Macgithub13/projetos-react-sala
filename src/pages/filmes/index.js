@@ -2,8 +2,6 @@ import './index.scss';
 import axios from 'axios';
 import Cabecalho from '../../components/header';
 import { useEffect, useState } from 'react';
-import ReactImageZoom from 'react-image-zoom';
-import ReactImageMagnify from 'react-image-magnify';
 
 export default function Filme(){
 
@@ -11,14 +9,16 @@ export default function Filme(){
     const[filmes,setFilmes]=useState([]);
     const[page,setPage]=useState(Number(1));
     const[filtro,setFiltro]=useState('no-load');
-    const[image,setImage]=useState('');
-
-    const props = {width: 400, height: 250, zoomWidth: 500, img: image}; 
+    const[respResults,setRespResults]=useState('');
+    const[display,setDisplay]=useState('none');
+    const[image,setImage]=useState([]);
                                         
     async function search(){
 
         let filtroInicial='';
         let url='';
+
+        // Para não ser realizado um search quando a página for carregada
         if(filtro==='no-load'){
 
             url='http://www.omdbapi.com/?apikey=85a936bc&s='+filme+'&page='+page+'&type='+filtroInicial;
@@ -29,13 +29,28 @@ export default function Filme(){
             url='http://www.omdbapi.com/?apikey=85a936bc&s='+filme+'&page='+page+'&type='+filtro;
         }
         
-        // http://www.omdbapi.com/?apikey=85a936bc&s=Spider Man&page=2&type=null
         let resultados= await axios.get(url);
 
-        setFilmes(resultados.data.Search);
-        console.log(filmes);   
-    }
+        // Para verificar os resultados (se for true ou false)
+        const resp=resultados.data.Response;
+        if(resp==='True'){
 
+            setFilmes(resultados.data.Search);
+            setImage(`${filmes.Poster}`);
+            console.log(filmes);
+            console.log(image);
+            setRespResults('');
+            setDisplay('flex');
+        }
+        
+        else if(resp==='False'){
+
+            setRespResults('Sem resultados');
+            setFilmes([]);
+        }
+    }   
+
+    // Avançar/Voltar página
     useEffect(() => {
 
         if(page!==1){
@@ -44,6 +59,7 @@ export default function Filme(){
         }
     },[page]);
 
+    // Aplicar filtro
     useEffect(() => {
 
         if(filtro!=='no-load'){
@@ -96,6 +112,8 @@ export default function Filme(){
                     </div>
 
                     <div className='resultados'>
+
+                        <h2 style={{color:"#646464", fontWeight:"700", fontSize:"25px"}}>{respResults}</h2>
                         <table>
                             <thead>
                                 <tr>
@@ -120,7 +138,7 @@ export default function Filme(){
                             
                         </table>
 
-                        <div className='paginas'>
+                        <div className='paginas' style={{display:`${display}`}}>
 
                             <div className='avancar-voltar-pages'>
 
