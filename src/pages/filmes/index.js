@@ -7,11 +7,13 @@ export default function Filme(){
 
     const[filme,setFilme]=useState('');
     const[filmes,setFilmes]=useState([]);
+
     const[page,setPage]=useState(Number(1));
     const[filtro,setFiltro]=useState('no-load');
+
     const[respResults,setRespResults]=useState('');
     const[display,setDisplay]=useState('none');
-    const[image,setImage]=useState([]);
+    const[image,setImage]=useState('');
                                         
     async function search(){
 
@@ -37,8 +39,6 @@ export default function Filme(){
 
             setFilmes(resultados.data.Search);
             setImage(`${filmes.Poster}`);
-            console.log(filmes);
-            console.log(image);
             setRespResults('');
             setDisplay('flex');
         }
@@ -126,11 +126,18 @@ export default function Filme(){
                             <tbody>
                                 
                             {filmes.map(item=> 
-                                <tr>
+                                <tr  onMouseOver={() => {
+                                    let img=item.Poster;
+                                    if(item.Poster==='N/A'){
+                                        img='/assets/images/default-placeholder.png';
+                                    }
+                                    setImage(img);
+                                    }}>
+
                                     <td style={{fontWeight:"700"}}>{item.imdbID.substr(2,9)}</td>
                                     <td>{item.Title}</td>
                                     <td>{item.Year}</td>
-                                    <td className='images'> <img src={item.Poster} alt='' draggable={false}/> </td>
+                                    <td className='images'> <img src={image} alt='' draggable={false}/> </td>
                                            
                                 </tr>
                                 )}
