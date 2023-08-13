@@ -6,15 +6,29 @@ import './index.scss';
 export default function Netflix(){
 
     const[buscar,setBuscar]=useState('');
+
     const typeF='movie';
     const typeG='game';
     const typeS='series';
+
     const[resultadosF,setResultadosF]=useState([]);
     const[resultadosG,setResultadosG]=useState([]);
     const[resultadosS,setResultadosS]=useState([]);
+    const[respResultadosF,setRespResultadosF]=useState('');
+    const[respResultadosG,setRespResultadosG]=useState('');
+    const[respResultadosS,setRespResultadosS]=useState('');
+
+    const[display,setDisplay]=useState('none');
+
+    const[imageF,setImageF]=useState('');
+    const[imageG,setImageG]=useState('');
+    const[imageS,setImageS]=useState('');
 
     async function searchFilmes(){
 
+        let respF='';
+        let respG='';
+        let respS='';
 
         let urlF='http://www.omdbapi.com/?apikey=85a936bc&s='+buscar+'&type='+typeF;
         let urlG='http://www.omdbapi.com/?apikey=85a936bc&s='+buscar+'&type='+typeG;
@@ -24,9 +38,53 @@ export default function Netflix(){
         let searchG= await axios.get(urlG);
         let searchS= await axios.get(urlS);
 
-        setResultadosF(searchF.data.Search);     
-        setResultadosG(searchG.data.Search);
-        setResultadosS(searchS.data.Search);
+        respF=(searchF.data.Response);
+        respG=(searchG.data.Response);
+        respS=(searchS.data.Response);
+
+        // Verif Filmes
+        if(respF==='False'){
+
+            setRespResultadosF('Sem resultados');
+            setResultadosF([]);
+        }
+
+        else if(respF==='True'){
+
+            setResultadosF(searchF.data.Search);   
+            setRespResultadosF('');
+            setImageF(searchF.data.Poster);
+        }
+          
+        // Verif Games
+        if(respG==='False'){
+
+            setRespResultadosG('Sem resultados');
+            setResultadosG([]);
+        }
+
+        else if(respG==='True'){
+
+            setResultadosG(searchG.data.Search);   
+            setRespResultadosG('');
+            setImageG(searchF.data.Poster);
+        }
+
+        // Verif Series
+        if(respS==='False'){
+
+            setRespResultadosS('Sem resultados');
+            setResultadosS([]);
+        }
+
+        else if(respS==='True'){
+
+            setResultadosS(searchS.data.Search);   
+            setRespResultadosS('');
+            setImageS(searchF.data.Poster);
+        }
+
+        setDisplay('flex');
     }
 
     return(
@@ -76,6 +134,8 @@ export default function Netflix(){
                             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.833984 17.5V15.5H3.25065V8.5C3.25065 7.11667 3.75412 5.88733 4.76107 4.812C5.76801 3.73667 7.07704 3.03267 8.68815 2.7V0.5H12.3132V2.7C13.9243 3.03333 15.2333 3.73767 16.2402 4.813C17.2472 5.88833 17.7507 7.11733 17.7507 8.5V15.5H20.1673V17.5H0.833984ZM10.5007 20.5C9.83607 20.5 9.26694 20.304 8.79328 19.912C8.31961 19.52 8.08318 19.0493 8.08398 18.5H12.9173C12.9173 19.05 12.6805 19.521 12.2068 19.913C11.7331 20.305 11.1644 20.5007 10.5007 20.5ZM5.66732 15.5H15.334V8.5C15.334 7.4 14.8607 6.45833 13.9142 5.675C12.9677 4.89167 11.8298 4.5 10.5007 4.5C9.17148 4.5 8.03364 4.89167 7.08711 5.675C6.14058 6.45833 5.66732 7.4 5.66732 8.5V15.5Z" fill="#E8E8E8"/>
                             </svg>
+
+                            <img src='/assets/images' alt=''/>
                             <select>
 
                                 <img src='' alt=''/>
@@ -100,26 +160,55 @@ export default function Netflix(){
 
                 <h4>Resultados da busca</h4>
                 
-                <h5>Filmes</h5>
-                <div>
-                    {resultadosF.map(item => 
-                        
-                        <img src={item.Poster} alt=''/> )}
+                
+                <div style={{display:`${display}`}} className='container-results'>
+                    <h5>Filmes</h5>
+
+                    <div>{respResultadosF}</div>
+
+                    <div>
+                        {resultadosF.map(item => 
+                            
+                            <div className='item-result'>
+                                <img src={item.Poster} alt=''/>
+                                <div>{item.Title}</div>
+                                <div>{item.Year}</div>
+                            </div>)}      
+                    </div>
                 </div>
 
-                <h5>Jogos</h5>
-                <div>
-                    {resultadosG.map(item => 
-                        
-                        <img src={item.Poster} alt=''/> )}
-                </div>
+                <div style={{display:`${display}`}} className='container-results'>
+                    <h5>Jogos</h5>
 
-                <h5>Séries</h5>
-                <div>
-                    {resultadosS.map(item => 
-                        
-                        <img src={item.Poster} alt=''/> )}
+                    <div>{respResultadosG}</div>
+
+                    <div>
+                        {resultadosG.map(item => 
+                            
+                            <div className='item-result'>
+                                <img src={item.Poster} alt=''/>
+                                <div>{item.Title}</div>
+                                <div>{item.Year}</div>
+                            </div>)}
+                    </div>
                 </div>
+                
+                <div style={{display:`${display}`}} className='container-results'>
+                    <h5>Séries</h5>
+
+                    <div>{respResultadosS}</div>
+
+                    <div>
+                        {resultadosS.map(item => 
+                            
+                            <div className='item-result'>
+                                <img src={item.Poster} alt=''/>
+                                <div>{item.Title}</div>
+                                <div>{item.Year}</div>
+                            </div>)}
+                    </div>
+                </div>
+                
             </div>
         </div>
     );

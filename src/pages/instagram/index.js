@@ -44,37 +44,37 @@ export default function Instagram(){
 
                     <div>
 
-                        <img src='/assets/images/profile1.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile1.png' alt=''/>
                     </div>
 
                     <div>
 
-                        <img src='/assets/images/profile2.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile2.png' alt=''/>
                     </div>
 
                     <div>
 
-                        <img src='/assets/images/profile3.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile3.png' alt=''/>
                     </div>
                     <div>   
 
-                        <img src='/assets/images/profile4.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile4.png' alt=''/>
                     </div>
 
                     <div>
-                        <img src='/assets/images/profile5.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile5.png' alt=''/>
                     </div>
 
                     <div>
-                        <img src='/assets/images/profile6.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile6.png' alt=''/>
                     </div>
 
                     <div>
-                        <img src='/assets/images/profile7.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile7.png' alt=''/>
                     </div>
 
                     <div>
-                        <img src='/assets/images/profile8.png' alt=''/>
+                        <img src='/assets/images/instagram-images/profile8.png' alt=''/>
                     </div>
                 </div>
             </div>
