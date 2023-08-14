@@ -6,6 +6,7 @@ export default function Pokemon(){
     
     const[pokemons,setPokemons]=useState([]);
     const[displayButton,setDisplayButton]=useState('none');
+    const[displayButton2,setDisplayButton2]=useState('block');
     const[next,setNext]=useState(0);
     const[paginacao,setPaginacao]=useState(1);
     const[nomePokemon,setNomePokemon]=useState('');
@@ -30,7 +31,6 @@ export default function Pokemon(){
         let extrairPokemons= [];
 
         if(nomePokemon===''){
-            
 
             for(let item of resp.data.results){
 
@@ -104,6 +104,7 @@ export default function Pokemon(){
         }
         
         setDisplayButton('flex');
+        setDisplayButton2('none');
     }
 
     function maisPokes(){
@@ -138,9 +139,10 @@ export default function Pokemon(){
                 <div className='encontrar-pokemons'>
 
                     <img src='/assets/images/pokemon-images/pikachu-image.png' alt=''/>
-                    <button onClick={() => {
+                    <button style={{display:`${displayButton2}`}} onClick={() => {
                         setDisplayLoading('block');
                         buscarPokemons();}}>Encontrar pokémons</button>
+                    <button style={{display:`${displayButton}`}} onClick={() => {setPokemons([]);}}>Encontrar pokémons</button>
 
                     {/* Loading enquanto api não carrega */}
                     <div class="loading" style={{display:`${displayLoading}`}}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
