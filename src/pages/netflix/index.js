@@ -20,10 +20,6 @@ export default function Netflix(){
 
     const[display,setDisplay]=useState('none');
 
-    const[imageF,setImageF]=useState('');
-    const[imageG,setImageG]=useState('');
-    const[imageS,setImageS]=useState('');
-
     async function searchFilmes(){
 
         let respF='';
@@ -53,7 +49,6 @@ export default function Netflix(){
 
             setResultadosF(searchF.data.Search);   
             setRespResultadosF('');
-            setImageF(searchF.data.Poster);
         }
           
         // Verif Games
@@ -67,7 +62,6 @@ export default function Netflix(){
 
             setResultadosG(searchG.data.Search);   
             setRespResultadosG('');
-            setImageG(searchF.data.Poster);
         }
 
         // Verif Series
@@ -81,7 +75,6 @@ export default function Netflix(){
 
             setResultadosS(searchS.data.Search);   
             setRespResultadosS('');
-            setImageS(searchF.data.Poster);
         }
 
         setDisplay('flex');

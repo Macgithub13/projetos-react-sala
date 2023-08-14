@@ -25,12 +25,12 @@ export default function Post(props){
                         <div className='buttons'>
                             <button>
 
-                                <img src='/assets/images/heart-icon.png' alt=''/>
+                                <img src='/assets/images/instagram-images/heart-icon.png' alt=''/>
                             </button>
 
                             <button>
                                 
-                                <img src='/assets/images/mesage-icon.png' alt=''/>
+                                <img src='/assets/images/instagram-images/mesage-icon.png' alt=''/>
                             </button>
                         </div>
                         

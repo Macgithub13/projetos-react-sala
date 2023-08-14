@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 *{
 
@@ -14,6 +15,11 @@ button,a{
   cursor:pointer;
   border:none;
   background:none;
+}
+
+input{
+
+  border:none;
 }
 
 textarea:focus, input:focus, select:focus {
