@@ -85,15 +85,19 @@ export default function Vingadores(){
 
             <div className='resultados'>
 
-                {herois.map(item => 
-                    
-                    <div className='card-personagem'>
+                <div className='scroll'>
 
-                        <img src={item.poster} alt=''/>
-                        <div>{item.nome}</div>
-                        <div>{item.descricao}</div>
+                    {herois.map(item => 
+                        
+                        <div className='card-personagem' onMouseOver={() => {setDisplayDesc('block')}}>
 
-                    </div>)}
+                            <img src={item.poster} alt=''/>
+                            <div id='nome'>{item.nome}</div>
+                            <div id='desc'>{item.descricao}</div>
+
+                        </div>)}
+                </div>
+                
             </div>
         </div>
     );
