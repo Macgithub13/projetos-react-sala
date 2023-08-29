@@ -47,44 +47,45 @@ export default function Vingadores(){
             }
         }
 
-        else{
-            
-            while(extrairPersonagens.length===0){
+        else{  
 
-                for(let item of resp.data.data.results){
+            for(let item of resp.data.data.results){
 
-                    let caminho='';
-                    let extensao='';
-                    let image='';
-                    let nome='';
-                    let desc='';
+                let caminho='';
+                let extensao='';
+                let image='';
+                let nome='';
+                let desc='';
     
-                    caminho=item.thumbnail.path;
-                    extensao=item.thumbnail.extension;
-                    image=caminho+'.'+extensao;
-                    nome=item.name;
-                    desc=item.description;
+                caminho=item.thumbnail.path;
+                extensao=item.thumbnail.extension;
+                image=caminho+'.'+extensao;
+                nome=item.name;
+                desc=item.description;
     
-                    if(item.name===nomeHeroi){
-                        extrairPersonagens.push({
+                if(item.name===nomeHeroi){
+                    extrairPersonagens.push({
     
-                        poster:image,
-                        nome:nome,
-                        descricao:desc
-                        });
-                    }
+                    poster:image,
+                    nome:nome,
+                    descricao:desc
+                    });
                 }
-                
             }
+            
+            setOffset(offset+10);
         }
 
         setHerois(extrairPersonagens);
     }
 
-    function buscarNome(){
+    useEffect(() => {
 
+        if(offset!==0){
 
-    }
+            search();
+        }
+    }, [offset]);
 
     return(
 
