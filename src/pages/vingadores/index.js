@@ -7,38 +7,83 @@ export default function Vingadores(){
 
     const[nomeHeroi,setNomeHeroi]=useState('');
     const[herois,setHerois]=useState([]);
+    const[offset,setOffset]=useState(0);
 
     async function search(){
 
-        let url='http://gateway.marvel.com/v1/public/characters?ts=1&apikey=c06634bbcc50c18c62a32c98290be07f&hash=f742925bbe89597b3895b48d3f8a0d4d&limit=5';
-    
+        let p=true;
+        let url='http://gateway.marvel.com/v1/public/characters?ts=1&apikey=c06634bbcc50c18c62a32c98290be07f&hash=f742925bbe89597b3895b48d3f8a0d4d&limit=10&offset='+offset;
+        
+        if(nomeHeroi!==''){
+
+            p=false;
+        }
+
         let resp= await axios.get(url);
         
         let extrairPersonagens=[];
         
-        for(let item of resp.data.data.results){
+        if(p){
+            for(let item of resp.data.data.results){
 
-            let caminho='';
-            let extensao='';
-            let image='';
-            let nome='';
-            let desc='';
+                let caminho='';
+                let extensao='';
+                let image='';
+                let nome='';
+                let desc='';
 
-            caminho=item.thumbnail.path;
-            extensao=item.thumbnail.extension;
-            image=caminho+'.'+extensao;
-            nome=item.name;
-            desc=item.description;
+                caminho=item.thumbnail.path;
+                extensao=item.thumbnail.extension;
+                image=caminho+'.'+extensao;
+                nome=item.name;
+                desc=item.description;
 
-            extrairPersonagens.push({
+                extrairPersonagens.push({
 
-                poster:image,
-                nome:nome,
-                descricao:desc
-            });
+                    poster:image,
+                    nome:nome,
+                    descricao:desc
+                });
+            }
+        }
+
+        else{
+            
+            while(extrairPersonagens.length===0){
+
+                for(let item of resp.data.data.results){
+
+                    let caminho='';
+                    let extensao='';
+                    let image='';
+                    let nome='';
+                    let desc='';
+    
+                    caminho=item.thumbnail.path;
+                    extensao=item.thumbnail.extension;
+                    image=caminho+'.'+extensao;
+                    nome=item.name;
+                    desc=item.description;
+    
+                    if(item.name===nomeHeroi){
+                        extrairPersonagens.push({
+    
+                        poster:image,
+                        nome:nome,
+                        descricao:desc
+                        });
+                    }
+                }
+                
+            }
         }
 
         setHerois(extrairPersonagens);
+    }
+
+    function buscarNome(){
+
+
     }
 
     return(
@@ -89,13 +134,13 @@ export default function Vingadores(){
 
                     {herois.map(item => 
                         
-                        <div className='card-personagem' onMouseOver={() => {setDisplayDesc('block')}}>
+                        <div className='card-personagem'>
 
                             <img src={item.poster} alt=''/>
                             <div id='nome'>{item.nome}</div>
                             <div id='desc'>{item.descricao}</div>
 
-                        </div>)}
+                        </div>)}            
                 </div>
                 
             </div>
